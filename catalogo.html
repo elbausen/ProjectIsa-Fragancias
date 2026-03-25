@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="catalog-page page-animate">
   <div class="page-glow"></div>
 
   <header class="site-header">
@@ -32,16 +32,16 @@
         <a href="./index.html#experiencia">Experiencia</a>
         <a href="./index.html#contacto">Contacto</a>
       </nav>
-      <a class="cta" href="./catalogo.html">Catálogo</a>
+      <a class="cta" href="./index.html">Inicio</a>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero catalog-hero">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Catálogo ISAÍ</p>
-          <h1>Fragancias curadas para cada momento.</h1>
+          <h1>Elegí tu aroma con precisión minimal.</h1>
           <p class="lead">
             Explorá aromas árabes, decants y ediciones limitadas con stock real. Elegí tu intensidad favorita.
           </p>
@@ -49,9 +49,14 @@
             <a class="btn-primary" href="#catalogo">Ver productos</a>
             <a class="btn-ghost" href="./index.html">Volver al home</a>
           </div>
+          <div class="catalog-badges">
+            <span class="page-pill">Catálogo oficial</span>
+            <span class="page-pill">Stock real</span>
+            <span class="page-pill">Envíos 24h</span>
+          </div>
         </div>
         <div class="hero-visual">
-          <div class="glow-card">
+          <div class="glow-card catalog-glow">
             <div class="glow-ring"></div>
             <div class="glow-content">
               <p class="glow-title">Drop ISAÍ 2026</p>
@@ -65,7 +70,7 @@
           </div>
           <div class="floating-tags">
             <span>Árabes Originales</span>
-            <span>Decants 5ml</span>
+            <span>Decants 10ml</span>
             <span>Nicho selecto</span>
           </div>
         </div>
@@ -79,14 +84,30 @@
           <p>Explorá por intensidad, formato y estilo. Todo en stock real.</p>
         </div>
         <div class="catalog-filters">
-          <button class="filter active">Todos</button>
-          <button class="filter">Árabes</button>
-          <button class="filter">Decants</button>
-          <button class="filter">Nicho</button>
-          <button class="filter">Edición limitada</button>
+          <div class="filter-row">
+            <button class="filter active" data-filter="all">Todos</button>
+            <button class="filter" data-filter="arabes">Árabes</button>
+            <button class="filter" data-filter="decants">Decants</button>
+            <button class="filter" data-filter="nicho">Nicho</button>
+            <button class="filter" data-filter="limitada">Edición limitada</button>
+          </div>
+          <div class="price-filter">
+            <label for="priceFilter">Precio máximo</label>
+            <input
+              type="range"
+              id="priceFilter"
+              min="5000"
+              max="60000"
+              step="1000"
+              value="60000"
+              aria-label="Filtrar por precio máximo"
+            />
+            <span id="priceValue">$60.000</span>
+          </div>
         </div>
         <div class="catalog-grid">
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="arabes" data-price="39900">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Árabe</span>
               <span class="stock">En stock</span>
@@ -98,19 +119,21 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="decants" data-price="9800">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
-              <span class="pill">Decant 5ml</span>
+              <span class="pill">Decant 10ml</span>
               <span class="stock">En stock</span>
             </div>
             <h3>Velvet Saffron</h3>
             <p>Azafrán, rosa y almizcle. Perfecto para probar.</p>
             <div class="catalog-bottom">
-              <span class="price">$6.500</span>
+              <span class="price">$9.800</span>
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="nicho" data-price="42000">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Nicho</span>
               <span class="stock">Últimas unidades</span>
@@ -122,7 +145,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="arabes" data-price="33500">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Árabe</span>
               <span class="stock">En stock</span>
@@ -134,7 +158,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="limitada" data-price="48000">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Edición limitada</span>
               <span class="stock">Preventa</span>
@@ -146,7 +171,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="decants" data-price="9800">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Decant 10ml</span>
               <span class="stock">En stock</span>
@@ -158,7 +184,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="arabes" data-price="31500">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Árabe</span>
               <span class="stock">En stock</span>
@@ -170,7 +197,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="nicho" data-price="37800">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Nicho</span>
               <span class="stock">En stock</span>
@@ -182,7 +210,8 @@
               <button class="btn-ghost">Ver</button>
             </div>
           </article>
-          <article class="catalog-item">
+          <article class="catalog-item" data-category="limitada" data-price="52000">
+            <div class="catalog-image" aria-hidden="true"></div>
             <div class="catalog-top">
               <span class="pill">Edición limitada</span>
               <span class="stock">Últimas unidades</span>
@@ -228,5 +257,44 @@
       <p>© 2026 ISAÍ Perfumería Árabe. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll(".filter[data-filter]");
+      var priceSelect = document.getElementById("priceFilter");
+      var items = document.querySelectorAll(".catalog-item");
+
+      function getActiveCategory() {
+        var active = document.querySelector(".filter.active");
+        return active ? active.getAttribute("data-filter") : "all";
+      }
+
+      function applyFilters() {
+        var category = getActiveCategory();
+        var maxPrice = parseInt(priceSelect.value, 10) || Number.POSITIVE_INFINITY;
+        var priceLabel = document.getElementById("priceValue");
+        if (priceLabel) {
+          priceLabel.textContent = "$" + maxPrice.toLocaleString("es-AR");
+        }
+        items.forEach(function (item) {
+          var itemCategory = item.getAttribute("data-category");
+          var itemPrice = parseInt(item.getAttribute("data-price"), 10) || 0;
+          var matchCategory = category === "all" || itemCategory === category;
+          var matchPrice = itemPrice <= maxPrice;
+          item.style.display = matchCategory && matchPrice ? "grid" : "none";
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          buttons.forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+          applyFilters();
+        });
+      });
+
+      priceSelect.addEventListener("change", applyFilters);
+      applyFilters();
+    })();
+  </script>
 </body>
 </html>
