@@ -84,6 +84,12 @@
           <p>Explorá por precio y encontrá tu fragancia ideal.</p>
         </div>
         <div class="catalog-filters">
+          <div class="filter-row" aria-label="Filtrar por género">
+            <button class="filter active" data-filter="all">Todos</button>
+            <button class="filter" data-filter="hombre">Hombre</button>
+            <button class="filter" data-filter="mujer">Mujer</button>
+            <button class="filter" data-filter="unisex">Unisex</button>
+          </div>
           <div class="price-filter">
             <label for="priceFilter">Precio máximo</label>
             <input
@@ -1352,26 +1358,253 @@
       <p>© 2026 ISAÍ Perfumería Árabe. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal__overlay" data-close></div>
+    <div class="product-modal__content" role="dialog" aria-modal="true" aria-label="Detalle de producto">
+      <button class="product-modal__close" data-close aria-label="Cerrar">×</button>
+      <div class="product-modal__image" id="modalImage"></div>
+      <div class="product-modal__body">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <div class="product-modal__price" id="modalPrice"></div>
+        <button class="btn-primary" id="modalAdd">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Carrito</h3>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">Cerrar</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <a class="btn-primary cart-checkout" id="cartCheckout" href="#" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+    </div>
+  </aside>
+  <button class="cart-fab" id="cartFab" aria-label="Abrir carrito">
+    Carrito <span id="cartCount">0</span>
+  </button>
   <script>
     (function () {
+      var buttons = document.querySelectorAll(".filter[data-filter]");
       var priceSelect = document.getElementById("priceFilter");
       var items = document.querySelectorAll(".catalog-item");
 
+      function getActiveCategory() {
+        var active = document.querySelector(".filter.active");
+        return active ? active.getAttribute("data-filter") : "all";
+      }
+
       function applyFilters() {
+        var category = getActiveCategory();
         var maxPrice = parseInt(priceSelect.value, 10) || Number.POSITIVE_INFINITY;
         var priceLabel = document.getElementById("priceValue");
         if (priceLabel) {
           priceLabel.textContent = "$" + maxPrice.toLocaleString("es-AR");
         }
         items.forEach(function (item) {
+          var itemCategory = item.getAttribute("data-sexo");
           var itemPrice = parseInt(item.getAttribute("data-price"), 10) || 0;
+          var matchCategory = category === "all" || itemCategory === category;
           var matchPrice = itemPrice <= maxPrice;
-          item.style.display = matchPrice ? "grid" : "none";
+          item.style.display = matchCategory && matchPrice ? "grid" : "none";
         });
       }
 
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          buttons.forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+          applyFilters();
+        });
+      });
+
       priceSelect.addEventListener("change", applyFilters);
       applyFilters();
+
+      var cartKey = "isai_cart";
+      var cart = [];
+      var cartDrawer = document.getElementById("cartDrawer");
+      var cartOverlay = document.getElementById("cartOverlay");
+      var cartItems = document.getElementById("cartItems");
+      var cartCount = document.getElementById("cartCount");
+      var cartTotal = document.getElementById("cartTotal");
+      var cartCheckout = document.getElementById("cartCheckout");
+
+      function formatPrice(value) {
+        return "$" + value.toLocaleString("es-AR");
+      }
+
+      function loadCart() {
+        try {
+          cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+        } catch (e) {
+          cart = [];
+        }
+      }
+
+      function saveCart() {
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        renderCart();
+      }
+
+      function renderCart() {
+        var total = 0;
+        var count = 0;
+        if (!cart.length) {
+          cartItems.innerHTML = "<p class='cart-empty'>Tu carrito está vacío.</p>";
+          cartTotal.textContent = "$0";
+          cartCount.textContent = "0";
+          cartCheckout.setAttribute("href", "https://wa.me/5493513923639?text=Hola%21%20tego%20una%20consulta%20a%20cerca%20de%20un%20perfume");
+          return;
+        }
+
+        var html = cart.map(function (item, index) {
+          total += item.price * item.qty;
+          count += item.qty;
+          return (
+            "<div class='cart-item' data-index='" + index + \"'>\" +
+              "<div class='cart-info'>" +
+                "<p class='cart-name'>" + item.name + "</p>" +
+                "<p class='cart-price'>" + formatPrice(item.price) + "</p>" +
+              "</div>" +
+              "<div class='cart-qty'>" +
+                "<button data-action='dec'>-</button>" +
+                "<span>" + item.qty + "</span>" +
+                "<button data-action='inc'>+</button>" +
+              "</div>" +
+              "<button class='cart-remove' data-action='remove' aria-label='Quitar'>×</button>" +
+            "</div>"
+          );
+        }).join("");
+
+        cartItems.innerHTML = html;
+        cartTotal.textContent = formatPrice(total);
+        cartCount.textContent = count.toString();
+
+        var message = "Hola! tego una consulta a cerca de un perfume. Mi carrito:%0A";
+        cart.forEach(function (item) {
+          message += "- " + item.name + " x" + item.qty + " (" + formatPrice(item.price) + ")%0A";
+        });
+        message += "Total: " + formatPrice(total);
+        cartCheckout.setAttribute("href", "https://wa.me/5493513923639?text=" + message);
+      }
+
+      function openCart() {
+        cartDrawer.classList.add("open");
+        cartOverlay.classList.add("show");
+        cartDrawer.setAttribute("aria-hidden", "false");
+      }
+
+      function closeCart() {
+        cartDrawer.classList.remove("open");
+        cartOverlay.classList.remove("show");
+        cartDrawer.setAttribute("aria-hidden", "true");
+      }
+
+      document.getElementById("cartFab").addEventListener("click", openCart);
+      document.getElementById("cartClose").addEventListener("click", closeCart);
+      cartOverlay.addEventListener("click", closeCart);
+
+      cartItems.addEventListener("click", function (event) {
+        var button = event.target.closest("button");
+        if (!button) return;
+        var itemEl = event.target.closest(".cart-item");
+        if (!itemEl) return;
+        var index = parseInt(itemEl.getAttribute("data-index"), 10);
+        if (Number.isNaN(index)) return;
+        var action = button.getAttribute("data-action");
+        if (action === "inc") {
+          cart[index].qty += 1;
+        } else if (action === "dec") {
+          cart[index].qty -= 1;
+          if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+          }
+        } else if (action === "remove") {
+          cart.splice(index, 1);
+        }
+        saveCart();
+      });
+
+      var modal = document.getElementById("productModal");
+      var modalImage = document.getElementById("modalImage");
+      var modalTitle = document.getElementById("modalTitle");
+      var modalDesc = document.getElementById("modalDesc");
+      var modalPrice = document.getElementById("modalPrice");
+      var modalAdd = document.getElementById("modalAdd");
+      var currentCard = null;
+
+      function openModal(card) {
+        currentCard = card;
+        var name = card.querySelector("h3").textContent.trim();
+        var desc = card.querySelector(".catalog-desc") ? card.querySelector(".catalog-desc").textContent.trim() : "";
+        var priceText = card.querySelector(".price") ? card.querySelector(".price").textContent.trim() : "";
+        var img = card.querySelector("img.catalog-image");
+
+        modalTitle.textContent = name;
+        modalDesc.textContent = desc || "Descripción pendiente.";
+        modalPrice.textContent = priceText;
+
+        if (img && img.getAttribute("src")) {
+          modalImage.style.backgroundImage = "url('" + img.getAttribute("src") + "')";
+          modalImage.classList.add("has-image");
+        } else {
+          modalImage.style.backgroundImage = "";
+          modalImage.classList.remove("has-image");
+        }
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      modal.addEventListener("click", function (event) {
+        if (event.target.closest("[data-close]")) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      document.querySelectorAll(".catalog-item .btn-ghost").forEach(function (btn) {
+        btn.classList.add("btn-view");
+        btn.addEventListener("click", function () {
+          var card = btn.closest(".catalog-item");
+          if (card) openModal(card);
+        });
+      });
+
+      modalAdd.addEventListener("click", function () {
+        if (!currentCard) return;
+        var name = currentCard.querySelector("h3").textContent.trim();
+        var price = parseInt(currentCard.getAttribute("data-price"), 10) || 0;
+        var existing = cart.find(function (item) { return item.name === name && item.price === price; });
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ name: name, price: price, qty: 1 });
+        }
+        saveCart();
+        openCart();
+        closeModal();
+      });
+
+      loadCart();
+      renderCart();
     })();
   </script>
 </body>
