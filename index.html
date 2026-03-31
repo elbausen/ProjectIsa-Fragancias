@@ -4,18 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ISAÍ Perfumería Árabe</title>
-  <meta name="description" content="Perfumería ISAÍ: perfumes árabes, decants y ediciones exclusivas. Aroma, diseño y sofisticación." />
+  <meta name="description" content="Perfumería ISAÍ: perfumes árabes, decants y ediciones exclusivas." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page-animate">
-  <div class="page-glow"></div>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#home" aria-label="ISAÍ Perfumería Árabe">
+  <header class="main-header perfumarte-header">
+    <div class="container header-main">
+      <div class="header-search">
+        <input type="search" placeholder="¿Qué estás buscando?" />
+        <button type="button" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+      <a class="logo" href="./index.html" aria-label="ISAÍ Perfumería Árabe">
         <div class="logo-mark" aria-hidden="true">
           <img src="assets/logo-isai.png" alt="Logo ISAÍ" onerror="this.style.display='none'; this.parentElement.classList.add('logo-fallback');" />
           <span class="logo-fallback-text">ISAÍ</span>
@@ -25,199 +33,373 @@
           <span class="tagline">perfumería árabe</span>
         </div>
       </a>
-      <nav class="nav">
-        <a href="#colecciones">Colecciones</a>
-        <a href="./catalogo.html" data-transition>Catálogo</a>
-        <a href="#destacados">Destacados</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#ubicacion">Dónde encontrarnos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <a class="cta" href="./catalogo.html" data-transition>Catálogo</a>
+      <div class="header-actions">
+        <a class="icon-link" href="#">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.3-1.5 1.1-1.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <circle cx="12" cy="17" r="1" fill="currentColor"></circle>
+            </svg>
+          </span>
+          <span>Ayuda</span>
+        </a>
+        <a class="icon-link" href="#">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M4 20c2.5-4 13.5-4 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span>Mi cuenta</span>
+        </a>
+        <a class="icon-link" href="#" id="cartHeader" aria-label="Abrir carrito">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16l-1.5 9.5H7.5L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+              <circle cx="9" cy="19" r="1.5" fill="currentColor"></circle>
+              <circle cx="17" cy="19" r="1.5" fill="currentColor"></circle>
+            </svg>
+            <span class="icon-dot" id="cartCount">0</span>
+          </span>
+          <span>Mi carrito</span>
+        </a>
+      </div>
     </div>
+    <nav class="main-nav">
+      <div class="container nav-inner">
+        <a href="./index.html">Inicio</a>
+        <a href="#quienes-somos">¿Quiénes somos?</a>
+        <div class="nav-item">
+          <a href="./catalogo.html" data-transition>Productos</a>
+          <div class="dropdown">
+            <a href="./catalogo.html" data-transition>Ver todos los productos</a>
+            <a href="./catalogo.html" data-transition>Perfumes de diseñador femeninos</a>
+            <span class="dropdown-title">Perfumes árabes</span>
+            <a href="./catalogo.html" data-transition>Perfumes árabes masculinos</a>
+            <a href="./catalogo.html" data-transition>Perfumes árabes femeninos</a>
+            <a href="./catalogo.html" data-transition>Liquidación verano</a>
+            <a href="./catalogo.html" data-transition>Nuevos ingresos</a>
+            <span class="dropdown-title">Decants árabes</span>
+            <a href="./catalogo.html" data-transition>Decants árabes masculinos</a>
+            <a href="./catalogo.html" data-transition>Decants árabes femeninos</a>
+          </div>
+        </div>
+        <a href="./catalogo.html" data-transition>Liquidación de verano</a>
+        <a href="./catalogo.html" data-transition>Nuevos ingresos ⚡</a>
+        <a href="./contacto.html" data-transition>Contacto</a>
+      </div>
+    </nav>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Perfumería ISAÍ</p>
-          <h1>Aromas árabes con brillo contemporáneo.</h1>
-          <p class="lead">
-            Una selección curada de perfumes, decants y ediciones exclusivas. Minimalismo, intensidad y lujo sutil en cada detalle.
-          </p>
-          <div class="hero-actions">
-            <a class="btn-primary" href="./catalogo.html" data-transition>Ver catálogo</a>
-            <button class="btn-ghost">Asesoría personalizada</button>
-          </div>
-          <div class="hero-metrics">
-            <div>
-              <span class="metric">+120</span>
-              <span class="label">fragancias premium</span>
+  <main>
+    <section class="hero-banner">
+      <div class="hero-carousel" id="heroCarousel" aria-label="Carrusel principal">
+        <button class="hero-arrow left" type="button" aria-label="Anterior" data-hero="prev">‹</button>
+        <button class="hero-arrow right" type="button" aria-label="Siguiente" data-hero="next">›</button>
+
+        <div class="hero-panel slide-1 active">
+          <div class="container hero-content">
+            <div class="hero-left">
+              <span class="hero-brand">ISAÍ FRAGANCIAS</span>
+              <h1>Perfumes árabes originales.</h1>
+              <p>Descubrí lanzamientos, ediciones limitadas y clásicos infaltables con asesoría personalizada.</p>
+              <a class="hero-cta-btn" href="./catalogo.html" data-transition>
+                <span class="cta-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 7h16l-1.5 9.5H7.5L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                    <circle cx="9" cy="19" r="1.5" fill="currentColor"></circle>
+                    <circle cx="17" cy="19" r="1.5" fill="currentColor"></circle>
+                  </svg>
+                </span>
+                <span>Comprá ahora!</span>
+              </a>
             </div>
-            <div>
-              <span class="metric">24h</span>
-              <span class="label">envíos en capital</span>
-            </div>
-            <div>
-              <span class="metric">3 cuotas</span>
-              <span class="label">sin interés</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="glow-card">
-            <div class="glow-ring"></div>
-            <div class="glow-content">
-              <p class="glow-title">Colección Noche Blanca</p>
-              <p class="glow-subtitle">Notas de ámbar, almizcle y oud.</p>
-              <div class="price-row">
-                <span class="price">$34.900</span>
-                <span class="chip">Nuevo</span>
+            <div class="hero-center">
+              <div class="hero-bottles">
+                <div class="hero-bottle bottle-1"></div>
+                <div class="hero-bottle bottle-2"></div>
+                <div class="hero-bottle bottle-3"></div>
               </div>
-              <button class="btn-dark">Ver detalle</button>
+              <div class="hero-platform"></div>
+            </div>
+            <div class="hero-right">
+              <div class="promo-item">
+                <span class="promo-big">20%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">abonando en transferencia</span>
+                </div>
+              </div>
+              <div class="promo-item">
+                <span class="promo-big">25%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">en efectivo en el showroom</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="floating-tags">
-            <span>Árabes Originales</span>
-            <span>Decants 10ml</span>
-            <span>Edición Limitada</span>
+        </div>
+
+        <div class="hero-panel slide-2">
+          <div class="container hero-content">
+            <div class="hero-left">
+              <span class="hero-brand">ISAÍ FRAGANCIAS</span>
+              <h1>Fragancias de diseñador.</h1>
+              <p>Selección curada de perfumes importados con stock inmediato y entrega rápida.</p>
+              <a class="hero-cta-btn" href="./catalogo.html" data-transition>
+                <span class="cta-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 7h16l-1.5 9.5H7.5L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                    <circle cx="9" cy="19" r="1.5" fill="currentColor"></circle>
+                    <circle cx="17" cy="19" r="1.5" fill="currentColor"></circle>
+                  </svg>
+                </span>
+                <span>Comprá ahora!</span>
+              </a>
+            </div>
+            <div class="hero-center">
+              <div class="hero-bottles">
+                <div class="hero-bottle bottle-1"></div>
+                <div class="hero-bottle bottle-2"></div>
+                <div class="hero-bottle bottle-3"></div>
+              </div>
+              <div class="hero-platform"></div>
+            </div>
+            <div class="hero-right">
+              <div class="promo-item">
+                <span class="promo-big">20%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">abonando en transferencia</span>
+                </div>
+              </div>
+              <div class="promo-item">
+                <span class="promo-big">25%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">en efectivo en el showroom</span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="hero-panel slide-3">
+          <div class="container hero-content">
+            <div class="hero-left">
+              <span class="hero-brand">ISAÍ FRAGANCIAS</span>
+              <h1>Decants y ediciones exclusivas.</h1>
+              <p>Probá, descubrí y elegí tu favorita con muestras premium de 10 ml.</p>
+              <a class="hero-cta-btn" href="./catalogo.html" data-transition>
+                <span class="cta-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 7h16l-1.5 9.5H7.5L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                    <circle cx="9" cy="19" r="1.5" fill="currentColor"></circle>
+                    <circle cx="17" cy="19" r="1.5" fill="currentColor"></circle>
+                  </svg>
+                </span>
+                <span>Comprá ahora!</span>
+              </a>
+            </div>
+            <div class="hero-center">
+              <div class="hero-bottles">
+                <div class="hero-bottle bottle-1"></div>
+                <div class="hero-bottle bottle-2"></div>
+                <div class="hero-bottle bottle-3"></div>
+              </div>
+              <div class="hero-platform"></div>
+            </div>
+            <div class="hero-right">
+              <div class="promo-item">
+                <span class="promo-big">20%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">abonando en transferencia</span>
+                </div>
+              </div>
+              <div class="promo-item">
+                <span class="promo-big">25%</span>
+                <div class="promo-text">
+                  <span class="promo-label">off</span>
+                  <span class="promo-sub">en efectivo en el showroom</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-dots" aria-label="Cambiar banner">
+          <button class="dot active" type="button" data-hero-dot="0" aria-label="Ir a la oferta 1"></button>
+          <button class="dot" type="button" data-hero-dot="1" aria-label="Ir a la oferta 2"></button>
+          <button class="dot" type="button" data-hero-dot="2" aria-label="Ir a la oferta 3"></button>
         </div>
       </div>
     </section>
 
-    <section id="colecciones" class="collections">
+    <section id="quienes-somos" class="section-block">
+      <div class="container section-head-row">
+        <h2>¿Quiénes somos?</h2>
+      </div>
       <div class="container">
-        <div class="section-head">
-          <h2>Colecciones esenciales</h2>
-          <p>Curaduría minimalista para encontrar el aroma que habla por vos.</p>
+        <p style="color:#6c6a66; max-width:700px;">Somos ISAÍ Fragancias, una perfumería especializada en aromas árabes y de diseñador con asesoría personalizada, entregas rápidas y selección curada.</p>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container benefits-grid">
+        <article class="benefit">
+          <strong>Compras presenciales</strong>
+          <span>Atención personalizada</span>
+        </article>
+        <article class="benefit">
+          <strong></strong>
+          <span>Pagos en persona</span>
+        </article>
+        <article class="benefit">
+          <strong>Compra segura</strong>
+          <span>Protegemos tus datos</span>
+        </article>
+        <article class="benefit">
+          <strong>20% de descuento</strong>
+          <span>En transferencia/efectivo</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+        <div class="hero-card" style="min-height:160px; justify-content:center;">
+          <span class="tag">Perfumes árabes</span>
+          <h3>Ver más</h3>
+          <a class="btn-link" href="./catalogo.html" data-transition>Explorar</a>
         </div>
-        <div class="card-grid card-grid--two">
-          <article class="card">
-            <h3>Árabes Originales</h3>
-            <p>Fragancias intensas, elegantes y de larga duración.</p>
-            <button class="btn-link">Explorar</button>
-          </article>
-          <article class="card">
-            <h3>Decants</h3>
-            <p>Probalos en formato 10ml con envío rápido.</p>
-            <button class="btn-link">Explorar</button>
-          </article>
-          <!-- Secciones eliminadas a pedido: Victoria's Secret y Mini Árabes -->
+        <div class="hero-card" style="min-height:160px; justify-content:center;">
+          <span class="tag">Perfumes de diseñador</span>
+          <h3>Ver más</h3>
+          <a class="btn-link" href="./catalogo.html" data-transition>Explorar</a>
         </div>
       </div>
     </section>
 
-    <section id="destacados" class="featured">
+    <section class="section-block">
+      <div class="container section-head-row">
+        <h2>Ofertas</h2>
+        <a class="section-link" href="./catalogo.html" data-transition>Ver todo</a>
+      </div>
       <div class="container">
-        <div class="section-head">
-          <h2>Destacados ISAÍ</h2>
-          <p>Las fragancias más pedidas, con stock limitado.</p>
-        </div>
-        <div class="product-grid">
-          <article class="product">
-            <div class="product-top">
-              <span class="pill">Best seller</span>
-              <span class="stock">En stock</span>
-            </div>
-            <h3>Baccarat Rouge 540</h3>
-            <p>Oud suave, caramelo y madera blanca.</p>
-            <div class="product-bottom">
-              <span class="price">$35.000</span>
-              <button class="btn-ghost">Comprar</button>
-            </div>
-          </article>
-          <article class="product">
-            <div class="product-top">
-              <span class="pill">Novedad</span>
-              <span class="stock">Últimas unidades</span>
-            </div>
-            <h3>Scandal Absolu</h3>
-            <p>Notas de miel y cuero con salida vibrante.</p>
-            <div class="product-bottom">
-              <span class="price">$32.000</span>
-              <button class="btn-ghost">Comprar</button>
-            </div>
-          </article>
-          <article class="product">
-            <div class="product-top">
-              <span class="pill">Exclusivo</span>
-              <span class="stock">En stock</span>
-            </div>
-            <h3>Layton</h3>
-            <p>Fresco especiado con vainilla moderna.</p>
-            <div class="product-bottom">
-              <span class="price">$35.000</span>
-              <button class="btn-ghost">Comprar</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experiencia" class="experience">
-      <div class="container experience-grid">
-        <div>
-          <h2>Experiencia ISAÍ</h2>
-          <p>
-            Atención personalizada, packaging premium y una selección de marcas que combinan tradición árabe con estética contemporánea.
-            Cada entrega se siente como un ritual.
-          </p>
-        </div>
-        <div class="experience-cards">
-          <article>
-            <h3>Curaduría</h3>
-            <p>Solo fragancias con excelente proyección y calidad de fijación.</p>
-          </article>
-          <article>
-            <h3>Envíos rápidos</h3>
-            <p>Despachos diarios y seguimiento en tiempo real.</p>
-          </article>
-          <article>
-            <h3>Brillo minimal</h3>
-            <p>Estética limpia con detalles que realzan el lujo.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="newsletter">
-      <div class="container newsletter-inner">
-        <div>
-          <h2>Novedades y lanzamientos</h2>
-          <p>Suscribite y recibí antes que nadie nuevos drops y promociones.</p>
-        </div>
-        <form class="newsletter-form" aria-label="Suscripción">
-          <input type="email" placeholder="Tu email" required />
-          <button type="submit" class="btn-dark">Enviar</button>
-        </form>
-      </div>
-    </section>
-
-    <section id="ubicacion" class="location">
-      <div class="container location-grid">
-        <div class="location-copy">
-          <p class="eyebrow">Dónde encontrarnos</p>
-          <h2>ISAÍ Perfumería Árabe</h2>
-          <p>
-            Boulevard San Juan 838, Córdoba. Te esperamos con asesoría personalizada y
-            stock inmediato.
-          </p>
-          <div class="location-meta">
-            <span>Horarios: Lun a Sáb • 10:00 a 13:00 y 17:00 a 22:00</span>
-            <span>Domingos • 17:00 a 22:00</span>
-            <span>WhatsApp: +54 9 3513 92-3639</span>
+        <div class="carousel">
+          <button class="carousel-btn prev" type="button" aria-label="Anterior" data-carousel="offers-prev">‹</button>
+          <div class="carousel-track" id="offersTrack">
+            <article class="product-card">
+          <div class="product-image"></div>
+          <h3>Tiramisu Caramel</h3>
+          <div class="price-row">
+            <span class="price">$109.112</span>
+            
           </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+            </article>
+            <article class="product-card">
+          <div class="product-image"></div>
+          <h3>Hawas Ice</h3>
+          <div class="price-row">
+            <span class="price">$95.000</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+            </article>
+            <article class="product-card">
+          <div class="product-image"></div>
+          <h3>Turathi Blue</h3>
+          <div class="price-row">
+            <span class="price">$103.752</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+            </article>
+            <article class="product-card">
+          <div class="product-image"></div>
+          <h3>Sabah Al Ward</h3>
+          <div class="price-row">
+            <span class="price">$59.920</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+            </article>
+          </div>
+          <button class="carousel-btn next" type="button" aria-label="Siguiente" data-carousel="offers-next">›</button>
         </div>
-        <div class="location-map">
-          <iframe
-            title="Mapa ISAÍ Perfumería Árabe"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=-31.4506106,-64.1789881&z=17&output=embed"
-          ></iframe>
-        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="container section-head-row">
+        <h2>Nuevos ingresos</h2>
+        <a class="section-link" href="./catalogo.html" data-transition>Ver todo</a>
+      </div>
+      <div class="container product-grid">
+        <article class="product-card">
+          <div class="product-image"></div>
+          <span class="badge">Nuevo</span><h3>Sceptre Malachite</h3>
+          <div class="price-row">
+            <span class="price">$74.320</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-image"></div>
+          <span class="badge">Nuevo</span><h3>Hawas Black</h3>
+          <div class="price-row">
+            <span class="price">$94.800</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-image"></div>
+          <span class="badge">Nuevo</span><h3>Yara Elixir</h3>
+          <div class="price-row">
+            <span class="price">$90.508</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-image"></div>
+          <span class="badge">Nuevo</span><h3>Vintage Radio</h3>
+          <div class="price-row">
+            <span class="price">$96.160</span>
+            
+          </div>
+          <div class="card-actions">
+            <a class="btn-primary" href="./catalogo.html" data-transition>Comprar</a>
+            <a class="btn-ghost" href="./catalogo.html" data-transition>Ver</a>
+          </div>
+        </article>
       </div>
     </section>
   </main>
@@ -226,14 +408,14 @@
     <div class="container footer-grid">
       <div>
         <h3>ISAÍ Perfumería Árabe</h3>
-        <p>Bv Elias Yofre 1135, Córdoba,Argentina</p>
-        <p>WhatsApp: +54 9 3513 92-3639</p>
+        <p>Boulevard San Juan 838, Córdoba</p>
+        <p>WhatsApp: 54 9 3513 92-3639</p>
         <p>Isaífragancias@gmail.com</p>
       </div>
       <div>
         <h4>Redes</h4>
         <ul class="footer-links">
-          <li><a href="https://www.instagram.com/isaifragancias/">Instagram</a></li>
+          <li><a href="https://www.instagram.com/isaifragancias/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#">TikTok</a></li>
           <li><a href="https://wa.me/5493513923639?text=Hola%21%20tego%20una%20consulta%20a%20cerca%20de%20un%20perfume">WhatsApp</a></li>
         </ul>
@@ -241,7 +423,7 @@
       <div>
         <h4>Atención</h4>
         <ul class="footer-links">
-          <li><a href="#">Envíos y cambios</a></li>
+          <li><a href="#">Compras presenciales</a></li>
           <li><a href="#">Preguntas frecuentes</a></li>
           <li><a href="#">Botón de arrepentimiento</a></li>
         </ul>
@@ -251,6 +433,407 @@
       <p>© 2026 ISAÍ Perfumería Árabe. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Carrito</h3>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">Cerrar</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal"></strong>
+      </div>
+      <a class="btn-primary cart-checkout" id="cartCheckout" href="#" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+    </div>
+  </aside>
+  <script>
+    (function () {
+      var cartKey = "isai_cart";
+      var cart = [];
+      var cartDrawer = document.getElementById("cartDrawer");
+      var cartOverlay = document.getElementById("cartOverlay");
+      var cartItems = document.getElementById("cartItems");
+      var cartCount = document.getElementById("cartCount");
+      var cartTotal = document.getElementById("cartTotal");
+      var cartCheckout = document.getElementById("cartCheckout");
+      var cartHeader = document.getElementById("cartHeader");
+
+      function formatPrice(value) {
+        return "$" + value.toLocaleString("es-AR");
+      }
+
+      function loadCart() {
+        try {
+          cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+        } catch (e) {
+          cart = [];
+        }
+      }
+
+      function saveCart() {
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        renderCart();
+      }
+
+      function renderCart() {
+        var total = 0;
+        var count = 0;
+        if (!cart.length) {
+          cartItems.innerHTML = "<p class='cart-empty'>Tu carrito está vacío.</p>";
+          cartTotal.textContent = "$0";
+          if (cartCount) {
+            cartCount.textContent = "0";
+            cartCount.style.display = "none";
+          }
+          cartCheckout.setAttribute("href", "https://wa.me/5493513923639?text=Hola%21%20tego%20una%20consulta%20a%20cerca%20de%20un%20perfume");
+          return;
+        }
+
+        var html = cart.map(function (item, index) {
+          total += item.price * item.qty;
+          count += item.qty;
+          var thumb = item.image
+            ? "<div class='cart-thumb' style=\"background-image:url('" + item.image + "')\"></div>"
+            : "<div class='cart-thumb placeholder'></div>";
+          return (
+            "<div class='cart-item' data-index='" + index + "'>" +
+              thumb +
+              "<div class='cart-info'>" +
+                "<p class='cart-name'>" + item.name + "</p>" +
+                "<p class='cart-price'>" + formatPrice(item.price) + "</p>" +
+              "</div>" +
+              "<div class='cart-qty'>" +
+                "<button data-action='dec'>-</button>" +
+                "<span>" + item.qty + "</span>" +
+                "<button data-action='inc'>+</button>" +
+              "</div>" +
+              "<button class='cart-remove' data-action='remove' aria-label='Quitar'>×</button>" +
+            "</div>"
+          );
+        }).join("");
+
+        cartItems.innerHTML = html;
+        cartTotal.textContent = formatPrice(total);
+        if (cartCount) {
+          cartCount.textContent = count.toString();
+          cartCount.style.display = "grid";
+        }
+
+        var message = "Hola! tego una consulta a cerca de un perfume. Mi carrito:%0A";
+        cart.forEach(function (item) {
+          message += "- " + item.name + " x" + item.qty + " (" + formatPrice(item.price) + ")%0A";
+        });
+        message += "Total: " + formatPrice(total);
+        cartCheckout.setAttribute("href", "https://wa.me/5493513923639?text=" + message);
+      }
+
+      function openCart() {
+        cartDrawer.classList.add("open");
+        cartOverlay.classList.add("show");
+        cartDrawer.setAttribute("aria-hidden", "false");
+        document.body.classList.add("cart-open");
+      }
+
+      function closeCart() {
+        cartDrawer.classList.remove("open");
+        cartOverlay.classList.remove("show");
+        cartDrawer.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("cart-open");
+      }
+
+      if (cartHeader) {
+        cartHeader.addEventListener("click", function (event) {
+          event.preventDefault();
+          openCart();
+        });
+      }
+      document.getElementById("cartClose").addEventListener("click", closeCart);
+      cartOverlay.addEventListener("click", closeCart);
+
+      cartItems.addEventListener("click", function (event) {
+        var button = event.target.closest("button");
+        if (!button) return;
+        var itemEl = event.target.closest(".cart-item");
+        if (!itemEl) return;
+        var index = parseInt(itemEl.getAttribute("data-index"), 10);
+        if (Number.isNaN(index)) return;
+        var action = button.getAttribute("data-action");
+        if (action === "inc") {
+          cart[index].qty += 1;
+        } else if (action === "dec") {
+          cart[index].qty -= 1;
+          if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+          }
+        } else if (action === "remove") {
+          cart.splice(index, 1);
+        }
+        saveCart();
+      });
+
+      loadCart();
+      renderCart();
+    })();
+  </script>
+  <script>
+    (function () {
+      var track = document.getElementById("offersTrack");
+      var prev = document.querySelector("[data-carousel='offers-prev']");
+      var next = document.querySelector("[data-carousel='offers-next']");
+      if (!track || !prev || !next) return;
+
+      function getGap() {
+        var styles = window.getComputedStyle(track);
+        var gapValue = styles.columnGap || styles.gap || "20px";
+        var gap = parseFloat(gapValue);
+        return Number.isNaN(gap) ? 20 : gap;
+      }
+
+      function scrollByCards(direction) {
+        var card = track.querySelector(".product-card");
+        var cardWidth = card ? card.getBoundingClientRect().width : 240;
+        var amount = (cardWidth + getGap()) * 2;
+        track.scrollBy({ left: direction * amount, behavior: "smooth" });
+      }
+
+      prev.addEventListener("click", function () {
+        scrollByCards(-1);
+      });
+      next.addEventListener("click", function () {
+        scrollByCards(1);
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var searchWrapper = document.querySelector(".header-search");
+      if (!searchWrapper) return;
+      var input = searchWrapper.querySelector("input");
+      var button = searchWrapper.querySelector("button");
+      var suggestions = searchWrapper.querySelector(".search-suggestions");
+      if (!input || !button || !suggestions) return;
+
+      var products = [];
+
+      function normalize(text) {
+        return text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9\s]/g, "")
+          .trim();
+      }
+
+      function formatPrice(value) {
+        return "$" + value.toLocaleString("es-AR");
+      }
+
+      function extractProducts(doc) {
+        return Array.prototype.slice.call(doc.querySelectorAll(".catalog-item")).map(function (item) {
+          var title = item.querySelector("h3");
+          var name = title ? title.textContent.trim() : "";
+          var price = parseInt(item.getAttribute("data-price"), 10) || 0;
+          var img = item.querySelector("img.catalog-image");
+          var image = img && img.getAttribute("src") ? img.getAttribute("src") : "";
+          return { name: name, price: price, image: image };
+        }).filter(function (item) { return item.name; });
+      }
+
+      function loadProducts() {
+        return fetch("./catalogo.html")
+          .then(function (res) { return res.text(); })
+          .then(function (html) {
+            var doc = new DOMParser().parseFromString(html, "text/html");
+            products = extractProducts(doc);
+            return products;
+          })
+          .catch(function () { products = []; return products; });
+      }
+
+      function renderSuggestions(list, query) {
+        var footer = "<button type='button' class='search-footer' data-action='all'>Ver todos los resultados</button>";
+        if (!list.length) {
+          if (query) {
+            suggestions.innerHTML = "<div class='search-empty'>No encontramos resultados.</div>" + footer;
+            suggestions.classList.add("show");
+            suggestions.setAttribute("data-query", query);
+          } else {
+            suggestions.classList.remove("show");
+            suggestions.innerHTML = "";
+          }
+          return;
+        }
+        var itemsHtml = list.map(function (item) {
+          var thumbStyle = item.image ? " style=\"background-image:url('" + item.image + "')\"" : "";
+          var installments = item.price ? "" : "";
+          var meta = item.price ? formatPrice(item.price) + installments : "Consultar precio";
+          return (
+            "<button type='button' class='search-item' data-name=\"" + item.name.replace(/\"/g, "&quot;") + "\">" +
+              "<span class='search-thumb'" + thumbStyle + "></span>" +
+              "<span class='search-body'>" +
+                "<span class='search-name'>" + item.name + "</span>" +
+                "<span class='search-meta'>" + meta + "</span>" +
+              "</span>" +
+              "<span class='search-arrow'>›</span>" +
+            "</button>"
+          );
+        }).join("");
+        suggestions.innerHTML = itemsHtml + footer;
+        suggestions.classList.add("show");
+        suggestions.setAttribute("data-query", query || "");
+      }
+
+      function goToSearch(query) {
+        if (query) {
+          window.location.href = "./catalogo.html?q=" + encodeURIComponent(query);
+        } else {
+          window.location.href = "./catalogo.html";
+        }
+      }
+
+      function handleInput() {
+        var value = input.value.trim();
+        if (value.length < 1) {
+          renderSuggestions([]);
+          return;
+        }
+        var query = normalize(value);
+        var matches = products.filter(function (item) {
+          return normalize(item.name).includes(query);
+        }).slice(0, 6);
+        renderSuggestions(matches, value);
+      }
+
+      suggestions.addEventListener("click", function (event) {
+        var btn = event.target.closest(".search-item");
+        if (btn) {
+          var name = btn.getAttribute("data-name");
+          input.value = name;
+          renderSuggestions([]);
+          goToSearch(name);
+          return;
+        }
+        var footer = event.target.closest("[data-action='all']");
+        if (footer) {
+          var query = suggestions.getAttribute("data-query") || input.value.trim();
+          renderSuggestions([]);
+          goToSearch(query);
+        }
+      });
+
+      input.addEventListener("input", handleInput);
+      input.addEventListener("focus", handleInput);
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          var first = suggestions.querySelector(".search-item");
+          if (first) {
+            goToSearch(first.getAttribute("data-name"));
+          } else if (input.value.trim()) {
+            goToSearch(input.value.trim());
+          }
+        }
+      });
+
+      button.addEventListener("click", function () {
+        if (input.value.trim()) {
+          goToSearch(input.value.trim());
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!searchWrapper.contains(event.target)) {
+          renderSuggestions([]);
+        }
+      });
+
+      loadProducts().then(function () {
+        if (input.value.trim().length >= 1) {
+          handleInput();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var carousel = document.getElementById("heroCarousel");
+      if (!carousel) return;
+      var slides = carousel.querySelectorAll(".hero-panel");
+      var dots = carousel.querySelectorAll("[data-hero-dot]");
+      var prev = carousel.querySelector("[data-hero='prev']");
+      var next = carousel.querySelector("[data-hero='next']");
+      var current = 0;
+      var interval = 6000;
+      var timer = null;
+
+      function showSlide(index) {
+        slides.forEach(function (slide, idx) {
+          if (idx === index) {
+            slide.classList.add("active");
+            slide.setAttribute("aria-hidden", "false");
+          } else {
+            slide.classList.remove("active");
+            slide.setAttribute("aria-hidden", "true");
+          }
+        });
+        dots.forEach(function (dot, idx) {
+          dot.classList.toggle("active", idx === index);
+        });
+        current = index;
+      }
+
+      function nextSlide() {
+        var nextIndex = (current + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+
+      function prevSlide() {
+        var prevIndex = (current - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
+      }
+
+      function startAuto() {
+        stopAuto();
+        timer = setInterval(nextSlide, interval);
+      }
+
+      function stopAuto() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      if (prev) {
+        prev.addEventListener("click", function () {
+          prevSlide();
+          startAuto();
+        });
+      }
+      if (next) {
+        next.addEventListener("click", function () {
+          nextSlide();
+          startAuto();
+        });
+      }
+      dots.forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          var index = parseInt(dot.getAttribute("data-hero-dot"), 10);
+          if (Number.isNaN(index)) return;
+          showSlide(index);
+          startAuto();
+        });
+      });
+
+      carousel.addEventListener("mouseenter", stopAuto);
+      carousel.addEventListener("mouseleave", startAuto);
+
+      showSlide(0);
+      startAuto();
+    })();
+  </script>
   <script>
     document.addEventListener("click", function (event) {
       var link = event.target.closest("a[data-transition]");
@@ -266,3 +849,16 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
