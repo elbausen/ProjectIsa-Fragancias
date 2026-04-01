@@ -353,6 +353,50 @@ body {
   background: #16404b;
 }
 
+.mobile-nav {
+  display: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #16404b;
+}
+
+.mobile-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  padding: 10px 18px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.mobile-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-nav-inner a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  scroll-snap-align: center;
+}
+
+.mobile-nav-inner a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.mobile-nav-inner a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
+}
+
 .nav-inner {
   display: flex;
   align-items: center;
@@ -1409,6 +1453,9 @@ img.catalog-image {
   .main-nav {
     display: none;
   }
+  .mobile-nav {
+    display: block;
+  }
   .catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1427,6 +1474,10 @@ img.catalog-image {
   }
   .catalog-grid {
     grid-template-columns: 1fr;
+  }
+  .mobile-nav-inner {
+    justify-content: flex-start;
+    padding-left: 16px;
   }
 }
 
