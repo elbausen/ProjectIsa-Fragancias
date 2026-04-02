@@ -94,12 +94,29 @@
       <div class="container mobile-nav-inner">
         <a href="./index.html">Inicio</a>
         <a href="#quienes-somos">¿Quiénes somos?</a>
-        <a href="./catalogo.html" data-transition>Productos</a>
+        <button class="mobile-nav-toggle" type="button" data-mobile-menu="products" aria-expanded="false" aria-controls="mobileProductsMenu">
+          Productos
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
         <a href="./catalogo.html" data-transition>Liquidación de verano</a>
         <a href="./catalogo.html" data-transition>Nuevos ingresos ⚡</a>
         <a href="./contacto.html" data-transition>Contacto</a>
       </div>
     </nav>
+    <div class="mobile-menu-panel" id="mobileProductsMenu" aria-label="Categorías de productos">
+      <div class="container mobile-menu-inner">
+        <a href="./catalogo.html" data-transition>Ver todos los productos</a>
+        <a href="./catalogo.html" data-transition>Perfumes de diseñador femeninos</a>
+        <span class="mobile-menu-title">Perfumes árabes</span>
+        <a href="./catalogo.html" data-transition>Perfumes árabes masculinos</a>
+        <a href="./catalogo.html" data-transition>Perfumes árabes femeninos</a>
+        <a href="./catalogo.html" data-transition>Liquidación verano</a>
+        <a href="./catalogo.html" data-transition>Nuevos ingresos</a>
+        <span class="mobile-menu-title">Decants árabes</span>
+        <a href="./catalogo.html" data-transition>Decants árabes masculinos</a>
+        <a href="./catalogo.html" data-transition>Decants árabes femeninos</a>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -418,8 +435,8 @@
     <div class="container footer-grid">
       <div>
         <h3>ISAÍ Perfumería Árabe</h3>
-        <p>Boulevard San Juan 838, Córdoba</p>
-        <p>WhatsApp: 54 9 3513 92-3639</p>
+        <p>Elías Yofre 1135, Barrio jardín, Córdoba</p>
+        <a href="https://wa.me/5493513923639?text=Hola%21%20tego%20una%20consulta%20a%20cerca%20de%20un%20perfume"><p>WhatsApp:  +54 9 3513 92-3639</p></a>
         <p>Isaífragancias@gmail.com</p>
       </div>
       <div>
@@ -435,7 +452,7 @@
         <ul class="footer-links">
           <li><a href="#">Compras presenciales</a></li>
           <li><a href="#">Preguntas frecuentes</a></li>
-          <li><a href="#">Botón de arrepentimiento</a></li>
+          <li><a href="/index.html">Botón de arrepentimiento</a></li>
         </ul>
       </div>
     </div>
@@ -845,6 +862,42 @@
     })();
   </script>
   <script>
+    (function () {
+      var toggle = document.querySelector('[data-mobile-menu="products"]');
+      var panel = document.getElementById("mobileProductsMenu");
+      if (!toggle || !panel) return;
+
+      function closeMenu() {
+        panel.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      toggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        var isOpen = panel.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      panel.addEventListener("click", function (event) {
+        if (event.target.closest("a")) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!panel.contains(event.target) && !toggle.contains(event.target)) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 900) {
+          closeMenu();
+        }
+      });
+    })();
+  </script>
+  <script>
     document.addEventListener("click", function (event) {
       var link = event.target.closest("a[data-transition]");
       if (!link) return;
@@ -859,9 +912,6 @@
   </script>
 </body>
 </html>
-
-
-
 
 
 

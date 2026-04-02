@@ -100,12 +100,35 @@
       <div class="container mobile-nav-inner">
         <a href="./index.html" data-transition>Inicio</a>
         <a href="./index.html#quienes-somos" data-transition>¿Quiénes somos?</a>
-        <a href="./catalogo.html" data-transition>Productos</a>
+        <button class="mobile-nav-toggle" type="button" data-mobile-menu="products" aria-expanded="false" aria-controls="mobileProductsMenu">
+          Productos
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
         <a href="./catalogo.html" data-transition>Liquidación de verano</a>
         <a href="./catalogo.html" data-transition>Nuevos ingresos ⚡</a>
         <a href="./contacto.html" data-transition>Contacto</a>
       </div>
     </nav>
+    <div class="mobile-menu-panel" id="mobileProductsMenu" aria-label="Categorías de productos">
+      <div class="container mobile-menu-inner">
+        <a href="./catalogo.html" data-transition>Ver todos los productos</a>
+        <span class="mobile-menu-title">Perfumes de diseñador</span>
+        <a href="./catalogo.html" data-transition>Perfumes de diseñador masculinos</a>
+        <a href="./catalogo.html" data-transition>Perfumes de diseñador femeninos</a>
+        <span class="mobile-menu-title">Perfumes árabes</span>
+        <a href="./catalogo.html" data-transition>Perfumes árabes masculinos</a>
+        <a href="./catalogo.html" data-transition>Perfumes árabes femeninos</a>
+        <a href="./catalogo.html" data-transition>Desodorantes árabes</a>
+        <a href="./catalogo.html" data-transition>Liquidación verano</a>
+        <a href="./catalogo.html" data-transition>Nuevos ingresos</a>
+        <span class="mobile-menu-title">Decants árabes</span>
+        <a href="./catalogo.html" data-transition>Decants árabes masculinos</a>
+        <a href="./catalogo.html" data-transition>Decants árabes femeninos</a>
+        <a href="./catalogo.html" data-transition>Gift card</a>
+        <a href="./catalogo.html" data-transition>Mini perfumeros</a>
+        <a href="./catalogo.html" data-transition>Packaging premium para regalos</a>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -2523,6 +2546,42 @@
 
       loadCart();
       renderCart();
+    })();
+  </script>
+  <script>
+    (function () {
+      var toggle = document.querySelector('[data-mobile-menu="products"]');
+      var panel = document.getElementById("mobileProductsMenu");
+      if (!toggle || !panel) return;
+
+      function closeMenu() {
+        panel.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      toggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        var isOpen = panel.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      panel.addEventListener("click", function (event) {
+        if (event.target.closest("a")) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!panel.contains(event.target) && !toggle.contains(event.target)) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 900) {
+          closeMenu();
+        }
+      });
     })();
   </script>
   <script>
