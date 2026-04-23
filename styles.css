@@ -8,6 +8,15 @@
   --accent-dark: #a98237;
   --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.06);
+  --nav-gray-base: #8f9193;
+  --nav-gray-ink: #747679;
+  --nav-gray-edge: #bdbfc1;
+  --nav-stone:
+    radial-gradient(170% 130% at 12% 14%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.08) 33%, transparent 66%),
+    radial-gradient(150% 140% at 84% 86%, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.06) 36%, transparent 68%),
+    radial-gradient(95% 100% at 60% 40%, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.04) 44%, transparent 74%),
+    radial-gradient(120% 100% at 34% 66%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.03) 40%, transparent 70%),
+    linear-gradient(152deg, #cbcdcf, #a4a6a9 42%, #8a8d90 70%, #7f8285);
 }
 
 * {
@@ -93,8 +102,8 @@ body {
 }
 
 .main-header {
-  background: #1b4a56;
-  border-bottom: 1px solid #123640;
+  background: var(--nav-stone);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   position: sticky;
   top: 0;
   z-index: 20;
@@ -349,15 +358,15 @@ body {
 }
 
 .main-nav {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: #16404b;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--nav-stone);
 }
 
 .mobile-nav {
   display: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: #16404b;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--nav-stone);
 }
 
 .mobile-nav-inner {
@@ -434,9 +443,9 @@ body {
 
 .mobile-menu-panel {
   display: none;
-  background: #16404b;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--nav-stone);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .mobile-menu-panel.open {
